@@ -1,0 +1,306 @@
+/* App screens occupy the viewport; the fixed-height vocabulary rows scroll. */
+html{height:100%;overflow:hidden}
+body{height:100vh;height:var(--app-height,100dvh);min-height:0;display:flex;flex-direction:column;overflow:hidden;overscroll-behavior:none}
+.topbar{width:100%;height:calc(64px + env(safe-area-inset-top));min-height:calc(64px + env(safe-area-inset-top));flex-shrink:0;padding-top:env(safe-area-inset-top)}
+.brand{gap:6px}
+.brand img{width:24px;height:24px}
+.brand>span{font:500 21px/1.2 'Songti SC','STSong','SimSun',serif;letter-spacing:.02em}
+main,body[data-view=learn] main{width:100%;height:auto;flex:1;min-height:0;padding:0 24px calc(90px + env(safe-area-inset-bottom))}
+main>section:not([hidden]){height:100%;min-height:0}
+body footer{display:none}
+#learn-view{display:flex;flex-direction:column}
+.home-scene{height:100%;min-height:0;padding:0 0 30px}
+.spring-decoration{margin-top:clamp(40px,13dvh,170px)}
+.home-action{height:96px;min-height:96px}
+.topbar nav{bottom:max(15px,env(safe-area-inset-bottom))}
+#learn-view.page-entering,#add-view.page-entering,#words-view.page-entering,#result-view.page-entering{animation-name:home-arrive}
+
+/* Only one lookup step is shown at a time. */
+#add-view{display:flex;flex-direction:column;max-width:670px;margin:auto}
+#add-view .intro{padding:16px 0 16px;flex-shrink:0}
+#add-view .intro h1{font-size:1.6rem;margin-top:6px}
+#add-view .workspace{display:block;min-height:0}
+#add-view .add-panel{padding:20px;border-radius:16px}
+#add-view .panel-heading{margin-bottom:14px}
+.lookup-status{margin-top:10px;font-size:.8125rem;line-height:1.5}
+.lookup-status:empty{display:none}
+body[data-lookup=result] #add-view .panel-heading,body[data-lookup=result] #lookup-form,body[data-lookup=result] #add-view .example-line{display:none}
+.translation-result{background:transparent;padding:0;margin-top:10px}
+.result-heading{margin-bottom:8px;gap:8px;justify-content:flex-end}
+.result-heading .badge{font-size:.75rem;white-space:normal;max-width:65%}
+.translation-result label{margin-top:8px;font-size:.8125rem}
+.translation-result input,.translation-result select{height:44px;min-height:44px;margin-top:4px;padding:8px 10px}
+.translation-result .full-width{margin-top:14px;min-height:46px}
+.dictionary-credit{margin-top:12px;font-size:.75rem}
+#lookup-again{font-size:.8125rem;white-space:nowrap}
+
+/* A group picker stays above the independently scrolling word list. */
+#words-view{display:flex;flex-direction:column}
+#words-view .intro{padding:10px 0 12px;flex-shrink:0}
+#words-view .intro h1{font-size:1.55rem;margin-top:3px}
+.word-toolbar{margin-bottom:10px;flex-shrink:0}
+.word-toolbar .primary-button{min-height:44px}
+.group-section{margin:0 0 12px;padding:0;flex-shrink:0;width:100%;max-width:none}
+#words-view .group-grid{display:flex;gap:10px;align-items:center}
+.group-picker{flex:1;min-width:0}
+.group-picker select{width:100%;height:44px;border:0;border-radius:9px;background:#ffffff4d;color:var(--ink);padding:0 12px;font-size:.875rem}
+.group-grid>.text-button{padding:9px 12px;background:#ffffff3b;border-radius:9px;white-space:nowrap}
+#word-list{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+.word-row{flex:0 0 86px;height:86px;min-height:86px;margin:0;padding:12px 18px;gap:12px;background:#ffffff55;overflow:hidden}
+.word-korean,.word-chinese{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.word-row .word-korean,.word-row .word-chinese{background:transparent;padding:0;text-align:left;color:inherit}
+.page-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;height:46px;flex-shrink:0;font-size:.8125rem}
+.page-controls button{min-width:85px}
+#words-view .empty-state{padding:14px}
+#words-view .empty-state p{font-size:.8125rem}
+#words-view .empty-state button{font-size:.8125rem;min-height:40px;margin-top:10px}
+
+/* Fixed toolbar, flexible word/details area, and always-visible bottom actions. */
+body[data-view=study] main,body[data-view=quiz] main{padding:max(8px,env(safe-area-inset-top)) 24px max(12px,env(safe-area-inset-bottom))}
+#study-view,#quiz-view{display:flex;flex-direction:column}
+.quiz-toolbar{height:46px;min-height:46px;flex-shrink:0;width:100%}
+.quiz-toolbar .back-button,.quiz-toolbar .sound-button{height:40px;min-height:40px;width:40px}
+.sound-button{position:relative}
+.sound-button[data-audio=loading] svg{opacity:.35}
+.sound-button[data-audio=loading]::after{content:'';position:absolute;width:22px;height:22px;border:2px solid #426c5230;border-top-color:#426c52;border-radius:50%;animation:audio-loading .8s linear infinite}
+.sound-button[data-audio=playing]{color:#236449;background:#ffffff70}
+@keyframes audio-loading{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.sound-button[data-audio=loading]::after{animation:none}}
+#audio-dialog{max-width:420px}
+#audio-error-word{font-size:1.35rem;color:#28382b;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#audio-dialog .field-note{font-size:.875rem;margin-bottom:0}
+@media(max-height:480px){#audio-dialog{padding:18px 22px}#audio-dialog p{margin:8px 0;font-size:.8125rem}#audio-error-word{display:none}#audio-dialog .field-note{font-size:.75rem}#audio-dialog .full-width{min-height:36px;padding:7px 12px}}
+.progress-track{flex-shrink:0;width:100%;margin:4px auto 0}
+.quiz-card{flex:1;width:100%;min-height:0;height:auto;margin:0 auto;padding:0;gap:0}
+.word-heading{padding:clamp(15px,4dvh,60px) 8px 0;flex-shrink:0}
+.quiz-card h1{font-size:clamp(2.25rem,5.2dvh,4.7rem);line-height:1.2}
+.quiz-card h1,.word-meaning{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.read-full{font-size:.75rem;min-height:28px;padding:3px 0;line-height:1.2}
+.language-caption{font-size:.8125rem;margin-top:10px}
+.word-meaning,#study-chinese{font-size:1.12rem;line-height:1.5;margin-top:12px}
+.meaning-veil{margin-top:15px}
+.meaning-veil span{height:18px;margin-top:7px}
+.word-details{flex:1;min-height:0;gap:10px;margin-top:18px}
+.detail-card:not(.phrase-card){flex:0 0 auto;min-height:0;padding:16px 18px 31px}
+.detail-card>p{font-size:1.08rem;line-height:1.45}
+.detail-card .detail-translation{font-size:1rem;line-height:1.45;margin-top:5px}
+.phrase-card{flex:1;min-height:0;padding:17px 18px 32px}
+.detail-label{font-size:.75rem;bottom:11px;left:18px}
+.detail-sound{bottom:6px;right:10px;width:32px;height:32px}
+.study-bottom{margin-top:auto;padding-top:14px;padding-bottom:0;flex-shrink:0}
+.memory-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#study-followup{grid-template-columns:repeat(2,minmax(0,1fr))}
+.memory-button{width:100%;min-width:0;min-height:72px;font-size:1.03rem;padding:8px 10px 16px;touch-action:manipulation}
+.recall-hint{font-size:.8125rem;margin-bottom:18px}
+.study-dots{margin-top:9px}
+.question-direction{font-size:.8125rem;margin-bottom:12px}
+.quiz-card #question-hint{font-size:.8125rem;margin-top:10px}
+.answer-options{flex:1;min-height:0;grid-template-columns:1fr;grid-template-rows:repeat(4,minmax(0,1fr));margin-top:24px;gap:12px;padding:0 4px;max-height:330px}
+.answer-option{min-height:0;padding:12px 14px;font-size:1.12rem;overflow-wrap:anywhere}
+.answer-cell{min-width:0;min-height:0;position:relative;display:flex}
+.answer-cell .answer-option{width:100%;height:100%;align-items:center}
+.answer-cell.long-label .answer-option{font-size:.875rem;padding-bottom:28px}
+.answer-option>span:last-child{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.option-full{position:absolute;right:10px;bottom:3px;font-size:.6875rem;min-height:24px;padding:2px 5px}
+.unknown-answer{width:min(100%,360px);align-self:center;margin-top:12px;min-height:72px;font-size:.9375rem}
+.quiz-bottom{margin-top:auto;padding-top:10px;padding-bottom:0;flex-shrink:0}
+body:not([data-answer]) .quiz-bottom{display:none}
+.quiz-card:has(#quiz-details:not([hidden])) .word-heading{padding-top:12px}
+.quiz-card:has(#quiz-details:not([hidden])) .question-direction{display:none}
+.answer-feedback{font-size:.8125rem;line-height:1.5;margin:10px 8px 0}
+.quiz-card:has(#quiz-details:not([hidden])) .answer-feedback{font-size:.8125rem;margin-top:10px}
+#answer-save-status{min-height:18px;font-size:.75rem;line-height:1.4}
+#next-question{width:min(100%,360px);margin-top:0;min-width:0;min-height:72px}
+#result-view{display:flex;align-items:center;justify-content:center}
+.result-card{max-height:100%;margin:0;display:flex;flex-direction:column;padding:24px}
+.result-card h1{font-size:1.6rem}
+.result-card>p{font-size:.875rem}
+#result-pending-list{display:flex;gap:8px;flex-wrap:wrap}
+#result-pending-list .pending-chip{font-size:.8125rem;padding:5px 8px;max-width:100%;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;overflow-wrap:anywhere}
+body[data-answer] .question-direction{display:none}
+.result-actions{margin-top:18px;gap:10px}
+.result-metrics{margin-top:12px;margin-bottom:8px;padding:12px 0}
+.result-flower{font-size:2rem;margin-bottom:8px}
+dialog{max-height:calc(100dvh - 32px);overflow:auto}
+.backup-actions{display:flex;gap:12px}
+.backup-actions button{flex:1;min-width:0}
+#backup-file[hidden]{display:none}
+body #toast{pointer-events:none}
+body[data-view=study] #toast,body[data-view=quiz] #toast{bottom:max(92px,env(safe-area-inset-bottom))}
+#full-text-dialog{overflow:hidden;width:min(540px,calc(100% - 32px));padding:26px}
+#full-text-content{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink);line-height:1.6;margin-top:18px;font-size:1rem}
+#full-text-dialog .page-controls{margin-top:18px}
+body[data-keyboard=true] .topbar,body[data-keyboard=true] #add-view .intro,body[data-keyboard=true] #add-view .panel-heading,body[data-keyboard=true] #add-view .field-note,body[data-keyboard=true] #add-view .example-line,body[data-keyboard=true] #add-view .dictionary-credit,body[data-keyboard=true] #add-view .result-heading,body[data-keyboard=true] #add-view .lookup-status{display:none}
+body[data-keyboard=true] main{padding:8px 16px max(8px,env(safe-area-inset-bottom))}
+body[data-keyboard=true] #add-view .add-panel{padding:10px}
+body[data-keyboard=true] #confirm-form{margin-top:0}
+body[data-keyboard=true] #confirm-form label{margin-top:4px;font-size:.75rem}
+body[data-keyboard=true] #confirm-form input,body[data-keyboard=true] #confirm-form select{height:36px;min-height:36px;margin-top:2px;padding:6px 8px}
+body[data-keyboard=true] #confirm-form .full-width{min-height:40px;padding:8px;margin-top:8px}
+
+@media(max-width:620px){
+  .topbar{height:calc(60px + env(safe-area-inset-top));min-height:calc(60px + env(safe-area-inset-top));padding:0 18px;padding-top:env(safe-area-inset-top)}
+  .brand img{width:23px;height:23px}
+  main,body[data-view=learn] main{padding:0 18px calc(83px + env(safe-area-inset-bottom))}
+  .home-scene{height:100%;padding-bottom:18px}
+  .home-action{height:80px;min-height:80px;padding:13px 18px}
+  .spring-decoration{margin-top:clamp(32px,12dvh,120px)}
+  #add-view .intro{padding:9px 0 12px}
+  #add-view .intro .eyebrow,#words-view .eyebrow{display:none}
+  #add-view .intro h1{font-size:1.45rem;margin-top:0}
+  #add-view .add-panel{padding:16px}
+  .lookup-input-wrap input{min-height:40px}
+  .lookup-input-wrap .primary-button{min-height:44px;padding:10px 16px}
+  .field-note{font-size:.8125rem;line-height:1.5}
+  .example-line{margin-top:18px;font-size:.75rem}
+  #words-view .intro{padding:8px 0 10px}
+  #words-view .intro h1{font-size:1.4rem}
+  .word-toolbar{gap:8px}
+  .word-toolbar .primary-button{padding:10px;font-size:.8125rem}
+  .search-label{padding:5px 10px}
+  .search-label input{font-size:.875rem;min-height:32px}
+  .group-picker select{font-size:.8125rem;padding:0 9px}
+  .group-grid>.text-button{font-size:.8125rem;padding:9px}
+  .word-row{flex-basis:84px;height:84px;min-height:84px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:1fr 1fr;column-gap:10px;row-gap:0;padding:9px 12px}
+  .word-number{display:none}
+  .word-korean{font-size:1.05rem;line-height:1.35;grid-column:1;grid-row:1}
+  .word-chinese{font-size:.875rem;line-height:1.35;grid-column:1;grid-row:2}
+  .word-row .badge{font-size:.6875rem;min-width:0;padding:3px 5px;grid-column:2;grid-row:1}
+  .word-actions{grid-column:2;grid-row:2;gap:6px}
+  .word-actions button{font-size:.6875rem;min-height:28px;padding:2px}
+  .group-section{margin-bottom:9px}
+  #word-list{gap:7px}
+  body[data-view=study] main,body[data-view=quiz] main{padding:max(8px,env(safe-area-inset-top)) 18px max(10px,env(safe-area-inset-bottom))}
+  .word-heading{padding:clamp(14px,4dvh,38px) 8px 0}
+  .word-details{margin-top:16px;gap:10px}
+  .detail-card:not(.phrase-card){padding:14px 16px 30px}
+  .phrase-card{padding:15px 16px 30px}
+  .detail-card>p{font-size:1rem}
+  .detail-card .detail-translation{font-size:.9375rem}
+  .answer-options{margin-top:20px;max-height:270px;gap:10px}
+  .answer-option{font-size:1rem;padding:12px 10px;gap:8px}
+  .memory-actions{gap:3px}
+  .memory-button{min-width:0}
+  .result-card{padding:20px 18px}
+}
+@media(max-height:720px){
+  .word-heading{padding-top:14px}
+  .quiz-card h1{font-size:2.15rem}
+  .word-details{margin-top:12px;gap:8px}
+  .detail-card:not(.phrase-card){padding:11px 15px 27px}
+  .phrase-card{padding:12px 15px 27px}
+  .detail-card>p,.detail-card .detail-translation{font-size:.9375rem;line-height:1.4}
+  .study-bottom{padding-top:10px}
+  .word-meaning,#study-chinese{margin-top:9px;font-size:1rem}
+  .language-caption{margin-top:8px}
+  .answer-options{margin-top:14px;max-height:230px}
+  .question-direction{margin-bottom:9px}
+  .result-card h1{font-size:1.35rem}
+}
+@media(max-height:500px){
+  .topbar{height:44px;min-height:44px;padding-top:0}
+  main,body[data-view=learn] main{padding-bottom:60px}
+  .topbar nav{height:42px;bottom:8px}
+  .nav-button{min-height:42px}
+  .nav-button span{display:none}
+  .spring-decoration{margin-top:15px}
+  .spring-decoration span{font-size:1.6rem}
+  .spring-decoration i{margin-top:8px}
+  .home-scene{padding-bottom:8px}
+  .home-action{height:65px;min-height:65px;padding:10px 18px}
+  .home-action>span{font-size:1.2rem}
+  .home-action small,.home-action em{margin-top:2px}
+  #add-view .intro{padding:3px 0 5px}
+  #add-view .intro .eyebrow,#add-view .dictionary-credit{display:none}
+  #add-view .intro h1{font-size:1.2rem;line-height:1.3;margin-top:0}
+  #add-view .add-panel{padding:10px 14px}
+  #add-view .panel-heading{margin-bottom:7px}
+  #add-view .field-note{font-size:.6875rem;margin-top:5px}
+  #add-view .example-line{margin-top:8px}
+  #add-view .lookup-status{font-size:.6875rem;line-height:1.35;margin-top:4px}
+  #confirm-form{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;margin-top:3px}
+  #confirm-form .result-heading,#lookup-choice-row,#save-word-button{grid-column:1/-1}
+  #confirm-form .result-heading{margin-bottom:0}
+  #lookup-again{min-height:28px;padding:3px 0;font-size:.75rem}
+  #confirm-form label{font-size:.75rem;margin-top:3px}
+  #confirm-form input,#confirm-form select{height:36px;min-height:36px;margin-top:2px;padding:5px 8px}
+  #confirm-form .full-width{height:40px;min-height:40px;margin-top:7px;padding:6px}
+  #words-view .intro{padding:0 0 5px}
+  #words-view .eyebrow{display:none}
+  #words-view .intro h1{font-size:1.15rem;margin-top:0}
+  .word-toolbar{margin-bottom:5px}
+  .word-toolbar .primary-button,.group-picker select,.group-grid>.text-button{height:36px;min-height:36px;padding-top:5px;padding-bottom:5px}
+  .search-label{padding-top:1px;padding-bottom:1px}
+  .search-label input{min-height:28px}
+  .group-section{margin-bottom:5px}
+  .page-controls{height:36px}
+  .page-controls button{min-height:36px}
+  body[data-view=study] main,body[data-view=quiz] main{padding-top:4px;padding-bottom:5px}
+  .quiz-toolbar{height:40px;min-height:40px}
+  .word-heading,.quiz-card:has(#quiz-details:not([hidden])) .word-heading{padding-top:5px}
+  .quiz-card h1{font-size:1.7rem;-webkit-line-clamp:1}
+  .word-meaning,#study-chinese{font-size:.875rem;margin-top:5px;-webkit-line-clamp:1}
+  .language-caption{font-size:.75rem;margin-top:3px}
+  .meaning-veil{margin-top:8px}
+  .meaning-veil span{height:12px;margin-top:5px}
+  .word-details{margin-top:7px;flex-direction:row;gap:8px}
+  .detail-card:not(.phrase-card),.phrase-card{flex:1;min-width:0;min-height:0;padding:8px 10px 22px}
+  .detail-card>p,.detail-card .detail-translation{font-size:.8125rem;line-height:1.3}
+  .detail-label{font-size:.625rem;left:10px;bottom:5px}
+  .detail-sound{width:24px;height:24px;right:5px;bottom:2px}
+  .study-bottom{padding-top:5px}
+  .recall-hint{font-size:.6875rem;margin-bottom:7px}
+  .study-dots{margin-top:4px;margin-bottom:3px}
+  .memory-button{min-height:60px;font-size:.9375rem;padding:5px 8px 13px}
+  .answer-options{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));margin-top:9px;max-height:145px;gap:8px}
+  .answer-option{font-size:.9375rem;padding:6px 10px}
+  .unknown-answer{margin-top:6px;min-height:60px;font-size:.8125rem}
+  .question-direction{margin-bottom:4px;font-size:.6875rem}
+  .quiz-card #question-hint{margin-top:4px;font-size:.75rem}
+  .answer-feedback{font-size:.6875rem;margin-top:4px}
+  .quiz-bottom{padding-top:4px}
+  #next-question{min-height:60px}
+  .result-card{padding:14px 18px;max-width:600px}
+  .result-card h1{margin:4px 0 6px}
+  .result-flower,.result-card .eyebrow{display:none}
+  .result-card>p{font-size:.75rem;line-height:1.4}
+  .result-metrics{margin-top:6px;margin-bottom:3px;padding:4px 0}
+  .result-metrics strong{font-size:1.6rem}
+  .result-actions{margin-top:8px}
+  .result-actions button{min-height:40px;padding:8px 12px;font-size:.875rem}
+  #full-text-dialog{padding:16px 20px}
+  #full-text-content{font-size:.875rem;margin-top:10px}
+  #full-text-dialog .page-controls{margin-top:10px}
+}
+
+/* A quiet, centered lookup composition with room for the keyboard and results. */
+#add-view{width:100%;align-items:center;padding-top:clamp(32px,15dvh,152px);gap:24px}
+#add-view .intro{width:100%;padding:0;text-align:center}
+#add-view .intro h1{margin-top:14px;font-weight:500;letter-spacing:.08em}
+.add-decoration{display:flex;align-items:center;justify-content:center;gap:18px;pointer-events:none}
+.add-decoration img{width:32px;height:32px;opacity:.7}
+.add-decoration span{width:30px;height:1px;background:#52745e30}
+#add-view .workspace{width:100%;max-width:560px;flex:0 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:2px}
+#add-view .add-panel{padding:22px;border-radius:20px;background:#ffffff45;box-shadow:none}
+#add-view .lookup-input-wrap{border:0;background:transparent;padding:0;gap:10px}
+#lookup-input{background:#ffffff45;border:1px solid #ffffff6b;border-radius:11px;padding-left:14px}
+body[data-lookup=result] #add-view{padding-top:clamp(16px,4dvh,48px);gap:16px}
+body[data-lookup=result] .add-decoration{display:none}
+body[data-lookup=result] #add-view .intro h1{margin-top:0}
+@media(max-width:620px){#add-view .add-panel{padding:18px}#add-view{gap:22px}}
+@media(max-height:500px){
+  #add-view,body[data-lookup=result] #add-view{padding-top:12px;gap:12px}
+  .add-decoration img{width:24px;height:24px}
+  #add-view .intro h1{margin-top:7px}
+  #add-view .add-panel{padding:14px 18px}
+}
+@media(max-height:360px){
+  #add-view,body[data-lookup=result] #add-view{padding-top:8px;gap:8px}
+  .add-decoration{display:none}
+  #add-view .intro h1{margin-top:0}
+  #add-view .add-panel{padding:10px 14px}
+}
+body[data-keyboard=true] #add-view{padding-top:0;gap:0}
+body[data-keyboard=true] .add-decoration{display:none}
+body[data-keyboard=true] #add-view .workspace{flex:1}
+body[data-keyboard=true] #add-view .add-panel{padding:10px}

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice">
+  <title>春日浅湾</title>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#ead0c3"/>
+      <stop offset=".64" stop-color="#f1e3d5"/>
+      <stop offset="1" stop-color="#dce4db"/>
+    </linearGradient>
+    <radialGradient id="light">
+      <stop stop-color="#fff8e9" stop-opacity=".8"/>
+      <stop offset=".6" stop-color="#fff8e9" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#fff8e9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sea" x2="0" y2="1">
+      <stop stop-color="#c7dbd2"/>
+      <stop offset="1" stop-color="#adcbc9"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e7e3d5"/>
+      <stop offset="1" stop-color="#efdbca"/>
+    </linearGradient>
+    <linearGradient id="shore" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d8e1d5"/>
+      <stop offset="1" stop-color="#c3d4c6"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1600v1200H0z"/>
+  <circle cx="1225" cy="210" r="270" fill="url(#light)"/>
+  <circle cx="1225" cy="210" r="68" fill="#fff5df" opacity=".57"/>
+  <path fill="#d1dfd3" opacity=".55" d="M0 535c195-25 339 11 525 11 229 0 425-52 652-22 145 19 271 13 423-5v681H0z"/>
+  <path fill="url(#sea)" d="M0 596c285-28 459 32 751 7 296-25 523-48 849-16v613H0z"/>
+  <path fill="none" stroke="#f5f4e8" stroke-width="2" opacity=".35" d="M117 660c133-6 215 1 330 1m535-18c125-6 228-4 333 0M535 732c172-7 299 5 426-1"/>
+  <path fill="url(#sand)" d="M1600 735c-199 8-333 82-533 122-270 55-538 39-779 127-108 40-204 95-288 146v70h1600z"/>
+  <path fill="none" stroke="#f7f2e5" stroke-width="7" opacity=".55" d="M1600 735c-199 8-333 82-533 122-270 55-538 39-779 127-108 40-204 95-288 146"/>
+  <path fill="url(#shore)" d="M0 1010c152-13 244 42 343 81 168 66 349 85 575 109H0z"/>
+  <g fill="none" stroke="#849f8c" stroke-width="2.5" stroke-linecap="round" opacity=".34">
+    <path d="M115 1148c-5-47-15-88-42-122m42 122c4-39 15-66 37-88"/>
+    <path d="M91 1065c-23-1-37-11-44-30 24 1 37 13 44 30zm45 17c-1-20 8-35 26-45 3 21-7 36-26 45z" fill="#94ad96" stroke="none"/>
+  </g>
+</svg>

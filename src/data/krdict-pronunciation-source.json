@@ -1,0 +1,292 @@
+{
+  "generatedAtUtc": "2026-10-07T15:24:21.583908+00:00",
+  "source": {
+    "archiveBytes": 84486309,
+    "archiveFile": "krdict-json-20260919.zip",
+    "archiveSha256": "f9c1b9309afe66429a92cca1b2c426db25ec809d04103aca74c3a23859280df6",
+    "downloadPage": "https://krdict.korean.go.kr/download/downloadPopup",
+    "downloadUrl": "https://krdict.korean.go.kr/dicBatchDownload?seq=217",
+    "jsonMembers": [
+      "10_5000_20260919.json",
+      "11_3671_20260919.json",
+      "1_5000_20260919.json",
+      "2_5000_20260919.json",
+      "3_5000_20260919.json",
+      "4_5000_20260919.json",
+      "5_5000_20260919.json",
+      "6_5000_20260919.json",
+      "7_5000_20260919.json",
+      "8_5000_20260919.json",
+      "9_5000_20260919.json"
+    ],
+    "publisher": "National Institute of Korean Language (국립국어원)",
+    "snapshot": "2026-09-19",
+    "sourceCreationDates": [
+      "2026/09/19 12:40:11",
+      "2026/09/19 12:40:19",
+      "2026/09/19 12:40:29",
+      "2026/09/19 12:40:41",
+      "2026/09/19 12:40:50",
+      "2026/09/19 12:40:59",
+      "2026/09/19 12:41:07",
+      "2026/09/19 12:41:15",
+      "2026/09/19 12:41:24",
+      "2026/09/19 12:41:33",
+      "2026/09/19 12:41:41"
+    ],
+    "sourceLabels": [
+      "한국어기초사전 - 국립국어원 제공"
+    ]
+  },
+  "schema": "{korean:[{entryId,homonym,pronunciation,url,chineseSenses},...]}",
+  "counts": {
+    "headwordLabelsUsedForMissingPronunciation": 142,
+    "headwordPronunciationsWithoutSound": 1119,
+    "headwordsWithMultipleCandidates": 7040,
+    "headwordsWithPronunciationLinks": 41389,
+    "inflectionAudioLinksExcluded": 21314,
+    "pronunciationLinkRecords": 49436,
+    "sourceEntries": 56555,
+    "sourceEntriesWithPronunciationLinks": 45279,
+    "sourceEntriesWithoutUsableChineseEntry": 4213
+  },
+  "extensions": {
+    "wav": 49123,
+    "mp3": 313
+  },
+  "coveragePercentOfChineseHeadwords": 85.68,
+  "output": {
+    "file": "pronunciation-links.json",
+    "bytes": 10114425,
+    "gzipBytes": 1363929,
+    "sha256": "1662489f079ff6431800a6a39a7bc05e509e783af62cc49e0ab6e29b28a49b9e"
+  },
+  "checks": {
+    "allLinksAreOriginalOfficialHttpsUrls": true,
+    "allRecordsMatchChineseSourceEntry": true,
+    "allCandidateListsAreNonempty": true,
+    "allRecordFieldsAreNonempty": true,
+    "onlyHeadwordPronunciationTypesSelected": true,
+    "friendEntryAndPronunciationPresent": true,
+    "appleEntryAndPronunciationPresent": true,
+    "apologyEntryAndPronunciationPresent": true,
+    "valueSystemEntryAndPronunciationPresent": true,
+    "eyeSourceEntryPresent": true,
+    "snowSourceEntryPresent": true,
+    "schoolHeadwordPronunciationPresent": true,
+    "springHeadwordPronunciationPresent": true,
+    "onlyDicmediaOfficialHost": true,
+    "metadataShaMatchesActualFile": true
+  },
+  "metadataAttribution": {
+    "attribution": "National Institute of Korean Language (국립국어원), Basic Korean Dictionary (한국어기초사전), Korean-Chinese translations.",
+    "identifier": "CC-BY-SA-2.0-KR",
+    "publisherCopyrightPolicy": "https://krdict.korean.go.kr/kor/kboardPolicy/copyRightTermsInfo",
+    "scope": "Exported dictionary text data; multimedia and example sentences are excluded.",
+    "url": "https://creativecommons.org/licenses/by-sa/2.0/kr/"
+  },
+  "audioCopyrightPolicy": "https://krdict.korean.go.kr/kor/kboardPolicy/copyRightTermsInfo",
+  "audioLicenseStatus": "Not individually established; do not describe recordings as CC BY-SA. This export contains URL and textual metadata only, not audio.",
+  "officialLinkingEvidence": [
+    "https://www.law.go.kr/LSW/precInfoP.do?precSeq=195427",
+    "https://lx.scourt.go.kr/search/detail/precedent/0/3264758"
+  ],
+  "rules": [
+    "Select only source WordForm type 발음, never 활용 or sentence recordings.",
+    "Preserve original source HTTPS URL without changing the format or hostname.",
+    "Match Chinese senses through source entryId + written headword + homonym; idioms can reuse their parent ID.",
+    "If source pronunciation text is absent, retain the sound URL and use the headword only as a display label, marking pronunciationIsLabelOnly=true.",
+    "Keep separate homonyms and alternative pronunciation records.",
+    "Do not proxy, rehost, bundle, predownload, or alter linked audio in this exporter."
+  ],
+  "samples": {
+    "친구": [
+      {
+        "entryId": "29742",
+        "homonym": "0",
+        "pronunciation": "친구",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/chieut_2005/chingu.wav",
+        "chineseSenses": [
+          "朋友，好友， 友人，故旧",
+          "家伙，小子"
+        ]
+      }
+    ],
+    "학교": [
+      {
+        "entryId": "73276",
+        "homonym": "0",
+        "pronunciation": "학꾜",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/hieut_2005/hakkkyo.wav",
+        "chineseSenses": [
+          "学校"
+        ]
+      }
+    ],
+    "봄": [
+      {
+        "entryId": "20219",
+        "homonym": "0",
+        "pronunciation": "봄",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/bieup_2005/bom.wav",
+        "chineseSenses": [
+          "春，春天，春季",
+          "春天，美好未来",
+          "春天，美好时光"
+        ]
+      }
+    ],
+    "사과": [
+      {
+        "entryId": "66371",
+        "homonym": "1",
+        "pronunciation": "사과",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/siot_2005/sagwa.wav",
+        "chineseSenses": [
+          "苹果"
+        ]
+      },
+      {
+        "entryId": "15830",
+        "homonym": "2",
+        "pronunciation": "사ː과",
+        "url": "https://dicmedia.korean.go.kr/multimedia/naver/2016/10000/07000/15830_sa-gwa.wav",
+        "chineseSenses": [
+          "道歉"
+        ]
+      }
+    ],
+    "가치관": [
+      {
+        "entryId": "15035",
+        "homonym": "0",
+        "pronunciation": "가치관",
+        "url": "https://dicmedia.korean.go.kr/multimedia/naver/2016/50000/45000/15035_gachigwan.wav",
+        "chineseSenses": [
+          "价值观"
+        ]
+      }
+    ],
+    "눈": [
+      {
+        "entryId": "72704",
+        "homonym": "1",
+        "pronunciation": "눈",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/nieun_2005/nun.wav",
+        "chineseSenses": [
+          "眼睛",
+          "视力，眼神",
+          "眼光，眼力，洞察力",
+          "眼神，目光",
+          "视线，眼光，看法",
+          "台风眼"
+        ]
+      },
+      {
+        "entryId": "24508",
+        "homonym": "2",
+        "pronunciation": "눈",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/nieun_2005/nun.wav",
+        "chineseSenses": [
+          "刻度"
+        ]
+      },
+      {
+        "entryId": "41542",
+        "homonym": "3",
+        "pronunciation": "눈",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/nieun_2005/nun.wav",
+        "chineseSenses": [
+          "网眼",
+          "交叉点"
+        ]
+      },
+      {
+        "entryId": "20198",
+        "homonym": "4",
+        "pronunciation": "눈ː",
+        "url": "https://dicmedia.korean.go.kr/multimedia/naver/2016/30000/23000/20198_nun-.wav",
+        "chineseSenses": [
+          "雪"
+        ]
+      },
+      {
+        "entryId": "41543",
+        "homonym": "5",
+        "pronunciation": "눈",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/nieun_2005/nun.wav",
+        "chineseSenses": [
+          "芽"
+        ]
+      }
+    ],
+    "말": [
+      {
+        "entryId": "27260",
+        "homonym": "1",
+        "pronunciation": "말ː",
+        "url": "https://dicmedia.korean.go.kr/multimedia/naver/2016/20000/19000/27260_mar-.wav",
+        "chineseSenses": [
+          "声，声音",
+          "话，语言",
+          "语言，话",
+          "词语，词汇",
+          "传言，消息",
+          "话",
+          "意思",
+          "幸好",
+          "真是的，不像话",
+          "就是那个"
+        ]
+      },
+      {
+        "entryId": "53066",
+        "homonym": "2",
+        "pronunciation": "말",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/mieum_2005/mal.wav",
+        "chineseSenses": [
+          "斗"
+        ]
+      },
+      {
+        "entryId": "53068",
+        "homonym": "3",
+        "pronunciation": "말",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/mieum_2005/mal.wav",
+        "chineseSenses": [
+          "马"
+        ]
+      },
+      {
+        "entryId": "53069",
+        "homonym": "4",
+        "pronunciation": "말",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/mieum_2005/mal.wav",
+        "chineseSenses": [
+          "棋子"
+        ]
+      },
+      {
+        "entryId": "53067",
+        "homonym": "5",
+        "pronunciation": "말",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/mieum_2005/mal.wav",
+        "chineseSenses": [
+          "斗"
+        ]
+      },
+      {
+        "entryId": "53070",
+        "homonym": "6",
+        "pronunciation": "말",
+        "url": "https://dicmedia.korean.go.kr/multimedia/sound_file/mieum_2005/mal.wav",
+        "chineseSenses": [
+          "末，底"
+        ]
+      }
+    ]
+  },
+  "officialHostsUsed": [
+    "dicmedia.korean.go.kr"
+  ]
+}

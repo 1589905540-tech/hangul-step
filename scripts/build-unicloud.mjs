@@ -1,0 +1,14 @@
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+const root=resolve(import.meta.dirname,'..');
+const source=resolve(root,'unicloud/cloudfunctions/spring-sync');
+const target=resolve(root,'dist/unicloud/cloudfunctions/spring-sync');
+await mkdir(target,{recursive:true});
+await mkdir(resolve(root,'dist/unicloud/database'),{recursive:true});
+const protocol=await readFile(resolve(root,'sync/protocol.mjs'),'utf8');
+const exports=[...protocol.matchAll(/^export (?:const|class|function) ([A-Za-z_$][\w$]*)/gm)].map(match=>match[1]);
+if(!exports.includes('applySync'))throw new Error('Cannot bundle the sync protocol.');
+await writeFile(resolve(target,'protocol.cjs'),"'use strict';\n"+protocol.replace(/^export /gm,'')+'\nmodule.exports={'+exports.join(',')+'};\n');
+for(const name of ['index.js','package.json','config.json'])await copyFile(resolve(source,name),resolve(target,name));
+await copyFile(resolve(source,'spring_spaces.schema.json'),resolve(root,'dist/unicloud/database/spring_spaces.schema.json'));
+console.log('Built uniCloud cloud function and denied-client-access database schema in dist/unicloud. No cloud resources were created.');

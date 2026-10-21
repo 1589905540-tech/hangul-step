@@ -1,0 +1,182 @@
+/* Keep the portrait photograph for portrait screens; compose tablets separately. */
+@media (min-width:700px) and (min-height:600px) {
+  body[data-view=learn] {
+    --home-content-width:min(86%,1280px);
+    background:#b9d9de;
+  }
+
+  body[data-view=learn]::before {
+    background-image:linear-gradient(#ffffff19,#ffffff00 50%,#ffffff19),url('/coast-v1.webp');
+    background-position:center,center;
+    background-size:cover;
+  }
+
+  body[data-view=learn] .topbar {
+    width:var(--home-content-width);
+    max-width:none;
+    height:calc(88px + env(safe-area-inset-top));
+    min-height:calc(88px + env(safe-area-inset-top));
+    padding:env(safe-area-inset-top) 0 0;
+    margin:0 auto;
+  }
+
+  body[data-view=learn] .brand {
+    gap:7px;
+  }
+
+  body[data-view=learn] .brand img {
+    width:26px;
+    height:26px;
+  }
+
+  body[data-view=learn] .brand>span {
+    font-size:21px;
+    color:#35443b;
+  }
+
+  body[data-view=learn] main {
+    max-width:none;
+    padding:0;
+    margin:0;
+  }
+
+  body[data-view=learn] .home-scene {
+    height:100%;
+    padding:0;
+  }
+
+  body[data-view=learn] .spring-decoration {
+    position:absolute;
+    top:clamp(48px,10dvh,104px);
+    margin:0;
+    text-align:center;
+    color:#36594e60;
+  }
+
+  body[data-view=learn] .spring-decoration span {
+    font-size:32px;
+    font-weight:300;
+    line-height:1.3;
+    letter-spacing:.06em;
+  }
+
+  body[data-view=learn] .spring-decoration i {
+    width:18px;
+    margin:16px auto 0;
+    background:#36594e55;
+  }
+
+  body[data-view=learn] .home-actions {
+    position:fixed;
+    left:50%;
+    bottom:18dvh;
+    transform:translateX(-50%);
+    width:var(--home-content-width);
+    margin:0;
+    gap:18px;
+  }
+
+  body[data-view=learn] .home-action {
+    height:clamp(72px,8.4dvh,88px);
+    min-height:0;
+    padding:12px 24px;
+    border:0;
+    border-radius:9px;
+    background:#ffffff9c;
+    box-shadow:none;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+  }
+
+  body[data-view=learn] .home-action>span {
+    font-size:23px;
+    font-weight:600;
+    line-height:1.25;
+    letter-spacing:-.025em;
+  }
+
+  body[data-view=learn] .home-action small,
+  body[data-view=learn] .home-action em {
+    margin-top:2px;
+    font-size:17px;
+    font-weight:400;
+    line-height:1.3;
+  }
+
+  body[data-view=learn] .home-action small {
+    color:#53635e;
+  }
+
+  body[data-view=learn] .home-action em {
+    color:#d37e44;
+  }
+
+  body[data-view=learn] .home-action:hover:not(:disabled) {
+    background:#ffffffb5;
+    transform:translateY(-2px);
+  }
+
+  body[data-view=learn] .topbar nav {
+    width:var(--home-content-width);
+    height:54px;
+    bottom:max(32px,6.6dvh,env(safe-area-inset-bottom));
+    align-items:center;
+    justify-content:space-between;
+    background:transparent;
+    border:0;
+    padding:0;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+
+  body[data-view=learn] .nav-button {
+    width:52px;
+    min-width:52px;
+    height:54px;
+    min-height:54px;
+    padding:12px;
+    color:#2f3937;
+  }
+
+  body[data-view=learn] .nav-button.active {
+    color:#176c61;
+  }
+
+  body[data-view=learn] .nav-button svg {
+    width:27px;
+    height:27px;
+    stroke-width:1.8;
+  }
+
+  body[data-view=learn] .nav-button span {
+    display:none;
+  }
+}
+
+/* A native 4:3 composition preserves the sky and shore on a landscape iPad. */
+@media (min-width:700px) and (min-height:600px) and (orientation:landscape) {
+  body[data-view=learn]::before {
+    background-image:linear-gradient(#ffffff19,#ffffff00 50%,#ffffff19),url('/coast-ipad-v2.webp');
+    background-position:center,center 35%;
+  }
+}
+
+@media (min-width:700px) and (min-height:600px) and (orientation:portrait) {
+  body[data-view=learn] {
+    --home-content-width:min(88%,900px);
+  }
+
+  body[data-view=learn] .spring-decoration {
+    top:clamp(64px,10dvh,120px);
+  }
+
+  body[data-view=learn] .home-actions {
+    bottom:17dvh;
+    gap:16px;
+  }
+
+  body[data-view=learn] .topbar nav {
+    bottom:max(32px,5.5dvh,env(safe-area-inset-bottom));
+  }
+}

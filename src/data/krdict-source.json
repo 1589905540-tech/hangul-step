@@ -1,0 +1,170 @@
+{
+  "counts": {
+    "chineseEquivalentRecords": 75145,
+    "chinesePlaceholderEquivalentsExcluded": 4174,
+    "entriesWithChinese": 52342,
+    "entriesWithoutChineseLemma": 4213,
+    "headwordsWithMultipleEntries": 3313,
+    "headwordsWithMultipleSenses": 11349,
+    "jsonFiles": 11,
+    "sensesInDetailedEntries": 68986,
+    "sourceEntries": 56555,
+    "uniqueHeadwords": 48308,
+    "uniqueIndexedSenses": 68109
+  },
+  "entryFeatureNames": [
+    "annotation",
+    "homonym_number",
+    "lexicalUnit",
+    "origin",
+    "partOfSpeech",
+    "semanticCategory",
+    "subjectCategiory",
+    "vocabularyLevel"
+  ],
+  "generatedAtUtc": "2026-10-07T04:06:10.904324+00:00",
+  "license": {
+    "attribution": "National Institute of Korean Language (국립국어원), Basic Korean Dictionary (한국어기초사전), Korean-Chinese translations.",
+    "identifier": "CC-BY-SA-2.0-KR",
+    "publisherCopyrightPolicy": "https://krdict.korean.go.kr/kor/kboardPolicy/copyRightTermsInfo",
+    "scope": "Exported dictionary text data; multimedia and example sentences are excluded.",
+    "url": "https://creativecommons.org/licenses/by-sa/2.0/kr/"
+  },
+  "limitations": [
+    "A learning dictionary does not cover every spelling, proper noun, inflected form, or new term.",
+    "Chinese reverse lookup should keep candidates separate where a Chinese gloss maps to multiple Korean entries.",
+    "The compact index keeps all available source senses, not a guaranteed single contextual translation."
+  ],
+  "outputs": {
+    "dictionary.entries.json": {
+      "bytes": 5986347,
+      "sha256": "693d75b3539f29d32ddbd738c75d8c437bbb8c8599afcaf12596a9b8a34aead6"
+    },
+    "dictionary.zh-ko.json": {
+      "bytes": 1938926,
+      "sha256": "fc4028e2c12449283387cea0039bef0b4bf712faa559c1294ca98a6b5f7d6ae6"
+    }
+  },
+  "samples": {
+    "가다": [
+      "去",
+      "去，开往，飞向",
+      "去，前往",
+      "去，上",
+      "上，进",
+      "去，被派去",
+      "归属，落到",
+      "产生",
+      "传到，送到",
+      "到达，迈向",
+      "达到",
+      "到",
+      "持续，维续",
+      "走",
+      "通往，通向",
+      "到，进展到",
+      "产生，造成",
+      "造成",
+      "需要",
+      "有，出现，长",
+      "能够，给予",
+      "过",
+      "走，运转",
+      "坏，变，跑",
+      "去除，消除，去掉",
+      "晕厥，倾心，昏迷",
+      "有，能听到",
+      "持续",
+      "去世"
+    ],
+    "가치관": [
+      "价值观"
+    ],
+    "공부하다": [
+      "学习，读书"
+    ],
+    "낯설다": [
+      "陌生，面生",
+      "陌生，生疏"
+    ],
+    "봄": [
+      "春，春天，春季",
+      "春天，美好未来",
+      "春天，美好时光"
+    ],
+    "사과": [
+      "苹果",
+      "道歉"
+    ],
+    "소통": [
+      "疏通，疏导，畅通",
+      "沟通，交流"
+    ],
+    "안경": [
+      "眼镜"
+    ],
+    "자존감": [],
+    "정체성": [
+      "认同性，认同感"
+    ],
+    "책임감": [
+      "责任感，责任心"
+    ],
+    "학교": [
+      "学校"
+    ],
+    "헷갈리다": [
+      "错乱，不集中",
+      "混淆，混杂，弄混"
+    ]
+  },
+  "schemaVersion": 1,
+  "source": {
+    "archiveBytes": 84486309,
+    "archiveFile": "krdict-json-20260919.zip",
+    "archiveSha256": "f9c1b9309afe66429a92cca1b2c426db25ec809d04103aca74c3a23859280df6",
+    "downloadPage": "https://krdict.korean.go.kr/download/downloadPopup",
+    "downloadUrl": "https://krdict.korean.go.kr/dicBatchDownload?seq=217",
+    "jsonMembers": [
+      "10_5000_20260919.json",
+      "11_3671_20260919.json",
+      "1_5000_20260919.json",
+      "2_5000_20260919.json",
+      "3_5000_20260919.json",
+      "4_5000_20260919.json",
+      "5_5000_20260919.json",
+      "6_5000_20260919.json",
+      "7_5000_20260919.json",
+      "8_5000_20260919.json",
+      "9_5000_20260919.json"
+    ],
+    "publisher": "National Institute of Korean Language (국립국어원)",
+    "snapshot": "2026-09-19",
+    "sourceCreationDates": [
+      "2026/09/19 12:40:11",
+      "2026/09/19 12:40:19",
+      "2026/09/19 12:40:29",
+      "2026/09/19 12:40:41",
+      "2026/09/19 12:40:50",
+      "2026/09/19 12:40:59",
+      "2026/09/19 12:41:07",
+      "2026/09/19 12:41:15",
+      "2026/09/19 12:41:24",
+      "2026/09/19 12:41:33",
+      "2026/09/19 12:41:41"
+    ],
+    "sourceLabels": [
+      "한국어기초사전 - 국립국어원 제공"
+    ]
+  },
+  "transformations": [
+    "Select Sense.Equivalent records whose language is 중국어.",
+    "Use the source's Chinese lemma verbatim except surrounding whitespace and NFC normalization.",
+    "Skip equivalents with an empty Chinese lemma; no generated or truncated meanings.",
+    "Exclude publisher placeholders such as (无对应词汇), which are not usable translations.",
+    "Skip Chinese lemmas longer than 120 characters without truncating them.",
+    "Group concise Chinese senses by Korean writtenForm and deduplicate exact same strings.",
+    "Keep separate source entries in dictionary.entries.json for homonyms and parts of speech.",
+    "Do not export examples, translations in other languages, audio, images, or other media."
+  ]
+}

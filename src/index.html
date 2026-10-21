@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#d8dfd0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="春">
+  <meta name="description" content="春，你的韩语生词本。输入中韩文自动查词，每组 10 个词，双向四选一。">
+  <title>春 · 韩语生词本</title>
+  <link rel="icon" href="/icon.svg?v=sprout-2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/chun-icon-180.png?v=sprout-2" sizes="180x180">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preload" href="/coast-v1.webp" as="image">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-view="learn" data-lookup="search">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="春首页"><img src="/icon.svg?v=sprout-2" alt="" width="24" height="24"><span>春</span></a>
+    <nav aria-label="主要导航"><button class="nav-button active" data-tab="learn" aria-label="学习首页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4"/></svg><span>学习</span></button><button class="nav-button" data-tab="words" aria-label="我的生词本和学习小组"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg><span>生词本</span></button><button class="nav-button" data-tab="add" aria-label="添加生词"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg><span>加生词</span></button></nav>
+    <div class="header-actions"><button id="space-button" class="text-button" aria-label="备份本地词库">备份</button></div>
+  </header>
+  <main id="main">
+    <div id="load-status" class="loading-state" role="status">加载中…</div>
+    <section id="learn-view" hidden>
+      <div class="home-scene">
+        <div class="spring-decoration" aria-hidden="true"><span lang="ko">봄</span><i></i></div>
+        <div class="home-actions"><button id="start-next" class="home-action learn-action" aria-label="开始学习"><span lang="en">Learn</span><small id="start-description">添加第一个词</small></button><button id="start-review" class="home-action review-action" aria-label="开始到期复习"><span lang="en">Review</span><em id="review-count">0</em><small id="review-description" class="sr-only">到期的词会在这里</small></button></div>
+      </div>
+    </section>
+    <section id="add-view" hidden>
+      <div class="intro compact"><div class="add-decoration" aria-hidden="true"><span></span><img src="/icon.svg?v=sprout-2" alt="" width="32" height="32"><span></span></div><h1 id="add-page-title">添加生词</h1></div>
+      <div class="workspace">
+        <section class="add-panel" aria-labelledby="add-title">
+          <h2 id="add-title" class="sr-only">查词</h2>
+          <form id="lookup-form"><label class="sr-only" for="lookup-input">输入韩文或中文</label><div class="lookup-input-wrap"><input id="lookup-input" maxlength="80" autocomplete="off" placeholder="例如：친구 或 朋友" required><button id="lookup-button" type="submit" class="primary-button">查词</button></div></form>
+          <div id="lookup-status" class="lookup-status" role="status" aria-live="polite"></div>
+          <form id="confirm-form" class="translation-result" hidden>
+            <div class="result-heading"><span id="translation-source" class="sr-only">参考释义</span><button id="lookup-again" type="button" class="text-button">换一个词</button></div>
+            <label id="lookup-choice-row" for="lookup-choice" hidden>词义<select id="lookup-choice"></select></label>
+            <label for="korean-input">韩文<input id="korean-input" lang="ko" maxlength="100" required></label>
+            <label for="chinese-input">中文释义<input id="chinese-input" maxlength="120" required></label>
+            <button id="save-word-button" class="primary-button full-width" type="submit">加入生词本</button>
+          </form>
+        </section>
+      </div>
+    </section>
+    <section id="words-view" hidden><div class="intro compact"><h1>我的生词本 <span id="word-count" class="large-count">0</span></h1></div><div class="word-toolbar"><label class="search-label"><span aria-hidden="true">⌕</span><input id="word-search" type="search" placeholder="找韩文或中文" aria-label="搜索生词"></label><button id="add-from-library" class="primary-button">＋ 添加生词</button></div><section class="group-section" aria-labelledby="group-title"><h2 id="group-title" class="sr-only">学习小组 <span id="group-count">0</span></h2><div id="group-grid" class="group-grid"></div></section><div id="word-list"></div></section>
+    <section id="study-view" hidden aria-labelledby="study-korean">
+      <div class="quiz-toolbar"><button id="exit-study" class="back-button" aria-label="返回学习"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span id="study-counter"></span><span id="study-label" class="toolbar-label"></span><button class="sound-button" data-speak="study-word" aria-label="听韩文发音"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4V9Zm13-1c2 2 2 6 0 8M20 5c4 4 4 10 0 14"/></svg></button><button id="skip-study" class="text-button">直接练习</button></div>
+      <div class="quiz-card study-card"><div class="word-heading"><h1 id="study-korean" lang="ko" tabindex="-1"></h1><span class="language-caption">韩语</span><p id="study-chinese" class="word-meaning" hidden aria-live="polite"></p><div id="study-veil" class="meaning-veil" aria-hidden="true"><span></span><span></span></div><button id="study-full-word" class="read-full text-button" hidden>查看全文</button></div>
+        <div id="study-details" class="word-details" hidden><section id="study-example-card" class="detail-card" hidden><p id="study-sentence" lang="ko"></p><p id="study-sentence-zh" class="detail-translation"></p><span class="detail-label">例句</span><button class="detail-sound sound-button" data-speak="study-sentence" aria-label="听韩文例句"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4V9Zm13-1c2 2 2 6 0 8"/></svg></button></section><section id="study-phrase-card" class="detail-card phrase-card" hidden><p id="study-phrase" lang="ko"></p><p id="study-phrase-zh" class="detail-translation"></p><span class="detail-label">词组搭配</span></section></div>
+        <div class="study-bottom"><p id="study-feedback" class="answer-feedback" role="status"></p><div id="study-save-status" class="subtle" role="status"></div><div id="study-assessment" class="memory-actions"><button data-confidence="known" class="memory-button known">认识</button><button id="reveal-meaning" data-confidence="maybe" class="memory-button maybe">模糊</button><button data-confidence="unknown" class="memory-button unknown">不认识</button></div><div id="study-followup" class="memory-actions" hidden><button id="next-study" class="memory-button known" disabled>下一词</button><button id="study-wrong" class="memory-button unknown">记错了</button></div><div id="study-dots" class="study-dots" aria-hidden="true"></div></div>
+      </div>
+    </section>
+    <section id="quiz-view" hidden aria-labelledby="question">
+      <div class="quiz-toolbar"><button id="exit-quiz" class="back-button" aria-label="返回学习"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span id="quiz-counter"></span><span id="quiz-label" class="toolbar-label"></span><button class="sound-button" data-speak="quiz-word" aria-label="听题目韩文发音"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4V9Zm13-1c2 2 2 6 0 8M20 5c4 4 4 10 0 14"/></svg></button></div>
+      <div class="progress-track" role="progressbar" aria-label="练习进度" aria-valuemin="0" aria-valuemax="100"><div id="quiz-progress"></div></div>
+      <div class="quiz-card"><div class="word-heading"><div class="question-direction" id="question-direction"></div><h1 id="question" tabindex="-1"></h1><p id="quiz-chinese" class="word-meaning" hidden></p><button id="quiz-full-word" class="read-full text-button" hidden>查看全文</button></div><div id="answer-options" class="answer-options"></div><button id="unknown-answer" class="memory-button unknown unknown-answer">不认识</button><div id="answer-feedback" class="answer-feedback" aria-live="polite"></div>
+        <div id="quiz-details" class="word-details" hidden><section id="quiz-example-card" class="detail-card" hidden><p id="quiz-sentence" lang="ko"></p><p id="quiz-sentence-zh" class="detail-translation"></p><span class="detail-label">例句</span><button class="detail-sound sound-button" data-speak="quiz-sentence" aria-label="听韩文例句"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4V9Zm13-1c2 2 2 6 0 8"/></svg></button></section><section id="quiz-phrase-card" class="detail-card phrase-card" hidden><p id="quiz-phrase" lang="ko"></p><p id="quiz-phrase-zh" class="detail-translation"></p><span class="detail-label">词组搭配</span></section></div>
+        <div class="quiz-bottom"><div id="answer-save-status" class="subtle" role="status"></div><div class="memory-actions quiz-followup"><button id="next-question" class="memory-button known" hidden>下一题</button><button id="quiz-maybe" class="memory-button maybe" hidden>模糊</button><button id="quiz-wrong" class="memory-button unknown" hidden>记错了</button></div></div>
+      </div>
+    </section>
+    <section id="result-view" hidden><div class="result-card"><h1 id="result-title">练习完成</h1><div class="result-metrics"><div><strong id="result-score"></strong><span>首轮答对</span></div><div><strong id="result-pending"></strong><span>待巩固的词</span></div></div><div id="result-pending-list"></div><div id="result-pagination" class="page-controls" hidden><button id="result-previous" class="text-button" aria-label="上一页待巩固词">‹ 上一页</button><span id="result-page" role="status"></span><button id="result-next" class="text-button" aria-label="下一页待巩固词">下一页 ›</button></div><div class="result-actions"><button id="retry-session" class="primary-button">再练一次</button><button id="finish-session" class="secondary-button">回到学习</button></div></div></section>
+    <footer><span>春 · 한 단어씩, 천천히</span><span id="sync-status" role="status">词库与进度保存在此设备</span></footer>
+  </main>
+  <dialog id="space-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="关闭">×</button><h2>数据与备份</h2><p>词库与进度保存在这台设备。</p><div class="backup-actions"><button id="export-data" class="secondary-button full-width">导出备份</button><button id="import-data" class="secondary-button full-width">导入备份</button></div><input id="backup-file" type="file" accept="application/json,.json" hidden><p id="space-status" class="lookup-status" role="status"></p><details id="legacy-import" hidden><summary>导入原词库</summary><input id="legacy-code" aria-label="原学习码，可留空" placeholder="原学习码（可留空）" spellcheck="false" autocapitalize="off" maxlength="60"><button id="import-original" class="text-button">导入</button></details><p id="offline-status" class="field-note" role="status">正在确认本机词典…</p><button id="prepare-offline" class="text-button" hidden>联网准备</button><p class="field-note">词典准备完成后，查词、练习和复习均在本机进行。未收录的词可手动填写。</p><p class="field-note">清除浏览器数据会移除本地词库，请定期备份。</p><section class="audio-settings" aria-labelledby="audio-settings-title"><h3 id="audio-settings-title">发音</h3><label class="audio-toggle"><input id="automatic-audio" type="checkbox" checked> 出词和评分后自动朗读</label><button id="preview-korean-audio" class="secondary-button" aria-label="试听韩语发音">试听韩语</button><p id="audio-device-status" class="field-note" role="status"></p><p class="field-note">首次无声时，在 iPad／iPhone「设置 → 辅助功能 → 朗读内容（或阅读与朗读）→ 声音」下载韩语声音，再点试听。仅使用本机声音，不连接在线录音。</p></section><p class="field-note"><a href="/dictionary-license" target="_blank" rel="noopener">词典来源与许可</a></p></dialog>
+  <dialog id="edit-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="关闭">×</button><h2>修改这个词</h2><form id="edit-form"><input type="hidden" id="edit-id"><label for="edit-korean">韩文<input id="edit-korean" lang="ko" maxlength="100" required></label><label for="edit-chinese">中文释义<input id="edit-chinese" maxlength="120" required></label><p class="field-note">修改释义会重置此词的学习进度。</p><button class="primary-button full-width" type="submit">保存修改</button></form></dialog>
+  <dialog id="delete-dialog"><h2>移除这个生词？</h2><p id="delete-description"></p><div class="result-actions"><button id="confirm-delete" class="danger-button">移除</button><button class="secondary-button" data-close-dialog>保留</button></div></dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="audio-dialog" aria-labelledby="audio-error-title"><button class="dialog-close icon-button" data-close-dialog aria-label="关闭">×</button><h2 id="audio-error-title">暂时无法播放</h2><p id="audio-error-word" lang="ko"></p><p id="audio-error-message"></p><p id="audio-voice-help" class="field-note" hidden>尚未找到本机韩语声音时，可在 iPad 的辅助功能中找到「朗读内容／阅读与朗读 → 声音」，下载韩语声音后重新打开春。</p><div class="result-actions"><button id="switch-audio" class="primary-button" hidden>改用设备朗读</button><button id="retry-audio" class="secondary-button">再试一次</button></div></dialog>
+  <dialog id="full-text-dialog"><button class="dialog-close icon-button" data-close-dialog aria-label="关闭">×</button><h2 id="full-text-title">完整内容</h2><p id="full-text-content"></p><div class="page-controls"><button id="full-text-previous" class="text-button" aria-label="上一页完整内容">‹ 上一页</button><span id="full-text-page" role="status"></span><button id="full-text-next" class="text-button" aria-label="下一页完整内容">下一页 ›</button></div></dialog>
+  <script type="module" src="/app.mjs"></script>
+</body>
+</html>

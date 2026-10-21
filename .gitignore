@@ -1,0 +1,16 @@
+dist/
+site.tar.gz
+node_modules/
+.dev/
+.sites-runtime/
+artifacts/
+/data/
+release/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite3
+*.db
+*.pem
+*.key
